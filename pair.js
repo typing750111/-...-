@@ -6,7 +6,7 @@ const fs = require('fs');
 let router = express.Router();
 const pino = require('pino');
 const {
-    default: Arslan_Tech,
+    default: Zakariya_Tech,
     useMultiFileAuthState,
     delay,
     makeCacheableSignalKeyStore,
@@ -22,10 +22,10 @@ router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
     
-    async function Arslan_MD_PAIR_CODE() {
+    async function Zakariya_Tech_PAIR_CODE() {
         const { state, saveCreds } = await useMultiFileAuthState('./temp/' + id);
         try {
-            let Pair_Code_By_Arslan_Tech = Arslan_Tech({
+            let Pair_Code_By_Zakariya_Tech = Zakariya_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'fatal' }).child({ level: 'fatal' })),
@@ -35,31 +35,31 @@ router.get('/', async (req, res) => {
                 browser: Browsers.macOS('Chrome')
             });
 
-            if (!Pair_Code_By_Arslan_Tech.authState.creds.registered) {
+            if (!Pair_Code_By_Zakariya_Tech.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
-                const code = await Pair_Code_By_Arslan_Tech.requestPairingCode(num);
+                const code = await Pair_Code_By_Zakariya_Tech.requestPairingCode(num);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
             }
 
-            Pair_Code_By_Arslan_Tech.ev.on('creds.update', saveCreds);
-            Pair_Code_By_Arslan_Tech.ev.on('connection.update', async (s) => {
+            Pair_Code_By_Zakariya_Tech.ev.on('creds.update', saveCreds);
+            Pair_Code_By_Zakariya_Tech.ev.on('connection.update', async (s) => {
                 const { connection, lastDisconnect } = s;
                 if (connection === 'open') {
                     await delay(5000);
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                     await delay(800);
                     let b64data = Buffer.from(data).toString('base64');
-                    let session = await Pair_Code_By_Arslan_Tech.sendMessage(Pair_Code_By_Arslan_Tech.user.id, { text: 'ARSLAN-MD~' + b64data });
+                    let session = await Pair_Code_By_Zakariya_Tech.sendMessage(Pair_Code_By_Zakariya_Tech.user.id, { text: 'Zakariya-Tech~' + b64data });
 
-                    let Arslan_MD_TEXT = `
+                    let Zakariya_Tech_TEXT = `
         
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
-║ ✨ Arslan-MD 🔷
-║ ✨ ArslanMD OFFICIAL🔷
+║ ✨ Zakariya-Tech 🔷
+║ ✨ Zakariya OFFICIAL🔷
 ╚════════════════════╝
 
 
@@ -72,14 +72,14 @@ router.get('/', async (req, res) => {
 ╚════════════════════╝
 ╔════════════════════◇
 ║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
-║❍ 𝐎𝐰𝐧𝐞𝐫: 923237045919
+║❍ 𝐎𝐰𝐧𝐞𝐫: 923102392745
 ║❍ 𝐑𝐞𝐩𝐨: https://github.com/Arslan-MD/Arslan_MD
 ║❍ 𝐖𝐚𝐆𝗿𝐨𝐮𝐩: https://chat.whatsapp.com/KRyARlvcUjoIv1CPSSyQA5?mode=wwt
-║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029VarfjW04tRrmwfb8x306
+║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029Vb7EAm1ISTkPVEl7za0m
 ║
 ║ ☬ ☬ ☬ ☬
 ╚═════════════════════╝
-𒂀 Enjoy Arslan-MD
+𒂀 Enjoy Zakariya-Tech
 
 
 ---
@@ -87,14 +87,14 @@ router.get('/', async (req, res) => {
 Don't Forget To Give Star⭐ To My Repo
 ______________________________`;
 
-                    await Pair_Code_By_Arslan_Tech.sendMessage(Pair_Code_By_Arslan_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
+                    await Pair_Code_By_Zakariya_Tech.sendMessage(Pair_Code_By_Zakariya_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
 
                     await delay(100);
-                    await Pair_Code_By_Arslan_Tech.ws.close();
+                    await Pair_Code_By_Zakariya_Tech.ws.close();
                     return await removeFile('./temp/' + id);
                 } else if (connection === 'close' && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    Arslan_MD_PAIR_CODE();
+                    Zakariya_Tech_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -106,7 +106,7 @@ ______________________________`;
         }
     }
     
-    return await Arslan_MD_PAIR_CODE();
+    return await Zakariya_Tech_PAIR_CODE();
 });
 
 module.exports = router;
